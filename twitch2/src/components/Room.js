@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Chat from './Chat'
 
 function Room() {
   return (
-    <div>Room</div>
+    <div className='room'>
+        <Chat />
+    </div>
   )
 }
 
