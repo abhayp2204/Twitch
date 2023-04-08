@@ -8,8 +8,7 @@ import Home from "./components/Home"
 import Room from "./components/Room"
 
 function App() {
-    const express = require('express');
-    // const cors = require('cors');
+    // const express = require('express');
     // const app = express();
     // app.use(cors());
 

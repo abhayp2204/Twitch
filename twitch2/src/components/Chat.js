@@ -22,11 +22,18 @@ function Chat() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (message.trim() !== '') {
-            socket.emit('chat message', message);
-            setMessage('');
+        if (message.trim() === '') {
+            alert("Message can't be empty");
+            return;
         }
+        socket.emit('chat message', message);
+        setMessage('');
+        const date = new Date();
+        const time = date.getHours() + ":" + date.getMinutes();
+        setMessages((prevMessages) => [...prevMessages, { type: 'sent', body: message, time: time }]);
     }
+
+    console.log(messages)
 
     return (
         <div className="chat-container">
