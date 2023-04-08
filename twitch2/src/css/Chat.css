@@ -17,18 +17,21 @@
     flex-grow: 1;
     padding: 10px;
     border-radius: 30px;
+    /* border: 1px solid #ccc; */
   }
   
   .message {
+    display: flex;
     border-radius: 10px;
-    background-color: #f1f0f0;
-    padding: 10px;
-    margin-bottom: 10px;
+    /* background-color: #f1f0f0; */
+    padding: 0px 0px;
+    margin-bottom: 0px;
+    height: 36px;
   }
   
   .message.sent {
     align-self: flex-end;
-    background-color: #007bff;
+    /* background-color: #007bff; */
     color: #fff;
   }
   
@@ -36,11 +39,12 @@
     align-self: flex-start;
   }
   
-  .message-info {
+  .message-user {
     display: flex;
-    font-size: 12px;
-    color: #999;
-    margin-bottom: 5px;
+    align-self: flex-start;
+    font-size: 16px;
+    color: red;
+    margin-top: 10px;
   }
   
   .username {
@@ -49,16 +53,21 @@
   }
   
   .message-body {
+    align-self: flex-center;
     font-size: 16px;
     word-wrap: break-word;
+    color: #999;
+    margin-top: 10px;
+    margin-left: 10px;
   }
   
   .input-container {
     display: flex;
     align-items: center;
     padding: 30px;
-    background-color: #f1f0f0;
     width: 70%;
+    background-color: #f1f0f0;
+    /* background-color: ; */
     height: 150px;
     font-size: 24px;
     margin-left: auto;
@@ -70,7 +79,7 @@
     flex-grow: 1;
     border: none;
     border-radius: 20px;
-    padding: 10px;
+    padding: 5px;
     font-size: 16px;
     margin-right: 10px;
   }

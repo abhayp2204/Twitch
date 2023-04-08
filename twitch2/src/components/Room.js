@@ -4,10 +4,9 @@ import Chat from './Chat'
 import { UserContext } from '../App'
 
 function Room(props) {
-    console.log(props.user)
     return (
         <div className='room'>
-            <Chat />
+            <Chat user={props.user} />
         </div>
     )
 }

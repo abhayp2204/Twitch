@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import io from 'socket.io-client';
 import '../css/Chat.css';
 
-function Chat() {
+function Chat(props) {
     const [socket, setSocket] = useState(null);
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
@@ -40,8 +40,9 @@ function Chat() {
             <div className="message-container">
                 {messages.map((msg, index) => (
                     <div key={index} className={`message ${msg.type}`}>
-                        <div className="message-info">{msg.name} ({msg.time})</div>
+                        <div className="message-user">{props.user}</div>
                         <div className="message-body">{msg.body}</div>
+                        {/* <div className="message-info">{msg.name} ({msg.time})</div> */}
                     </div>
                 ))}
             </div>
