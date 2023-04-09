@@ -1,0 +1,21 @@
+.room {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #222;
+    overflow: hidden;
+}
+
+.video-container {
+    position: absolute;
+    border: 1px solid #000;
+    width: 60%;
+    height: 60%;
+    top: 60px;
+    left: 360px;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
