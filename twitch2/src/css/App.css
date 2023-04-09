@@ -3,9 +3,6 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;
     margin: 0;
-    /* --button-color: #FFD700; */
-    --button-color: #00FFFF  ;
-    /* --button-color: #FF69B4     ; */
-    /* --button-color: #00FF7F ; */
-
+    --button-color: #00FFFF;
+    --button-color: #E71D36;
 }

@@ -42,7 +42,7 @@ function Home(props) {
                 Room
                 <select value={room} onChange={handleRoomChange}>
                     {rooms.map((room) => (
-                        <option key={room.value} value={room.value}>{room.label}</option>
+                        <option key={room.value} value={room.value} desc={room.desc}>{room.label}</option>
                     ))}
                 </select>
             </label>

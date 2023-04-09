@@ -36,25 +36,10 @@ select {
     width: 105%;
 }
 
-button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-}
-
-button[type="submit"]:hover {
-    background-color: #3e8e41;
-}
-
-button[type="submit"]:disabled {
+/* button[type="submit"]:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
-}
+} */
 
 
 .link-button-fancy-3 {
@@ -67,10 +52,12 @@ button[type="submit"]:disabled {
     text-decoration: none;
     border: 2px solid #fff;
     transition: all 0.3s ease-in-out;
+    margin-top: 20px;
 }
 
 .link-button-fancy-3:hover {
     background-color: var(--button-color);
     border-color: var(--button-color);
+    transform: scale(1.1);
 }
   
