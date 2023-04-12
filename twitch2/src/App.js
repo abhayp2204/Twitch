@@ -1,5 +1,5 @@
 // React
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import "./css/App.css"
 
@@ -15,9 +15,7 @@ import { auth, firestore } from "./firebase"
 import { useAuthState } from "react-firebase-hooks/auth"
 
 function App() {
-    // console.log("User = ", user)
-    console.log(auth)
-    // const [user] = useAuthState(auth);
+    const [user] = useAuthState(auth)
     const [user2, setUser2] = useState("")
 
     return (

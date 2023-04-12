@@ -1,25 +1,20 @@
-import React, { useState, useContext } from 'react'
+import React from 'react'
 import Chat from './Chat'
-import { UserContext } from '../App'
 import '../css/Room.css'
 import Panel from './Panel'
+import Navbar from './Navbar'
+import Video from './Video'
 
 function Room(props) {
-    const [videoUrl, setVideoUrl] = useState('https://www.youtube.com/embed/6fm-uj8E8lI')
     console.log("props = ",     props)
     console.log("props room = ", props.room)
 
     return (
         <div className='room'>
+            <Navbar />
             <Panel />
+            <Video room={props.room} />
             <Chat user={props.user} />
-            <div className='video-container'>
-                <iframe src={videoUrl}  allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-            <div className='room-info'>
-                <div className='room-title'>{props.room.label}</div>
-                <div className='room-description'>{props.room.desc}</div>
-            </div>
         </div>
     )
 }
