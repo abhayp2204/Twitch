@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/Auth.css'
 
 // firebase
 import firebase from 'firebase/compat/app';
@@ -6,15 +7,17 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { auth, firestore } from '../App'
+import { auth, firestore } from '../firebase'
 
 function SignIn() {
-    const signInWithGoog = () => {
+    const signInWithGoogle = () => {
         const provider = new firebase.auth.GoogleAuthProvider()
         auth.signInWithPopup(provider)
     }
     return (
-        <button onClick={signInWithGoog}>Sign In With Google</button>
+        <div className="sign-in-container">
+            <button className="sign-in-btn" onClick={signInWithGoogle}>Sign In With Google</button>
+        </div>
     )
 }
 

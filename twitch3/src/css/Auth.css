@@ -1,0 +1,25 @@
+.sign-in-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url("../images/bg1.webp");
+}
+  
+.sign-in-btn {
+    margin-bottom: 100px;
+    padding: 20px 20px;
+    background-color: var(--button-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out;
+}
+  
+.sign-in-btn:hover {
+    transform: scale(1.1);
+}
+  
