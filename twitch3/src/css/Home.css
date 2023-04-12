@@ -1,9 +1,9 @@
 .title {
+    margin-top: 90px;
     font-size: 3rem;
     font-weight: bold;
     text-align: center;
     margin: 1.5rem 0;
-    margin-top: 100px;
     color: var(--button-color);
 }
 
@@ -12,7 +12,7 @@
     text-align: center;
     margin: 1.5rem 0;
     margin-top: 20px;
-    width: 500px;
+    width: 520px;
     /* color: var(--button-color); */
 }
   
@@ -68,6 +68,7 @@ select {
 
 .link-button-fancy-3:hover {
     background-color: var(--button-color);
+    background-color: white;
     border-color: var(--button-color);
     transform: scale(1.1);
 }

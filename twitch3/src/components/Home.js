@@ -2,6 +2,8 @@ import React, { useState, createContext } from 'react';
 import "../css/Home.css";
 import { Link } from "react-router-dom"
 import rooms from "../data/rooms";
+import SignOut from './SignOut';
+import Profile from './Profile';
 
 export const AppContext = createContext({});
 
@@ -12,7 +14,7 @@ function Home(props) {
     const [room, setRoom] = useState(rooms[0].value);
     const [customRoom, setCustomRoom] = useState('');
 
-    console.log(props.user)
+
 
     const handleNicknameChange = (event) => {
         setNickname(event.target.value);
@@ -30,6 +32,8 @@ function Home(props) {
         event.preventDefault();
         window.location.href = 'http://localhost:3000/room';
     };
+
+
 
     return (    
         <form onSubmit={handleJoinChat}>
@@ -57,6 +61,7 @@ function Home(props) {
             <Link className="link-button-fancy-3" to={room}>
                 Join Room
             </Link>
+            <Profile user={props.user} />
         </form>
     );
 }

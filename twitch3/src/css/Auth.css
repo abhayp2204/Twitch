@@ -22,4 +22,27 @@
 .sign-in-btn:hover {
     transform: scale(1.1);
 }
+
+.sign-out-button {
+    display: inline-block;
+    padding: 10px 20px;
+
+    width: 200px;
+    height: 60px;
+    background-color: black;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    border: 2px solid #fff;
+    transition: all 0.3s ease-in-out;
+    margin-top: 20px;
+}
+
+.sign-out-button:hover {
+    cursor: pointer;
+    background-color: var(--button-color);
+    background-color: rgb(74, 4, 28);
+    border-color: var(--button-color);
+    transform: scale(1.1);
+}
   
