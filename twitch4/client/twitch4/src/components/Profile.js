@@ -13,9 +13,10 @@ const favoriteRooms = [
 ]
 
 function Profile(props) {
+    console.log(props.user.photoURL)
     return (
 		<div className="profile-container">
-            <img src={props.user.photoURL} alt="profile" />
+            <img src={props.user.photoURL} alt="profile" referrerPolicy="no-referrer"/>
 
             <div className="profile-info">
                 <div className="profile-name">{props.user.displayName}</div>
