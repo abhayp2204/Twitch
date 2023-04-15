@@ -1,33 +1,33 @@
-.video-player {
+.video-container {
     position: fixed;
-    border: 1px solid #fff;
-    width: 60%;
-    height: 60%;
     top: 100px;
-    left: 360px;
+    left: 350px;
+
+    width: 60%;
+    height: 600px;
 }
 
-iframe {
+.youtube-player {
     width: 100%;
     height: 100%;
 }
 
-.video-player {
-    width: 60%;
-    height: 60%;
-}
-
-.room-info {
-    position: absolute;
-    top: 720px;
-    left: 360px;
-    width: 60.5%;
+.room-description {
+    width: 100%;
     height: 200px;
-    background-color: #222;
+    margin-top: 30px;
+    margin-left: 0;
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     border-radius: 20px;
     background-color: #E71D36;
+    padding: 10px;
+}
+
+.room-desc {
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 10px;
 }

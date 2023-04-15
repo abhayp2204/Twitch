@@ -1,11 +1,11 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import "../css/Home.css";
 import { Link } from "react-router-dom"
 import rooms from "../data/rooms";
 import SignOut from './SignOut';
 import Profile from './Profile';
+import io from 'socket.io-client'
 
-export const AppContext = createContext({});
 
 
 
@@ -13,8 +13,6 @@ function Home(props) {
     const [nickname, setNickname] = useState('');
     const [room, setRoom] = useState(rooms[0].value);
     const [customRoom, setCustomRoom] = useState('');
-
-
 
     const handleNicknameChange = (event) => {
         setNickname(event.target.value);
@@ -30,8 +28,9 @@ function Home(props) {
 
     const handleJoinChat = (event) => {
         event.preventDefault();
-        window.location.href = 'http://localhost:3000/room';
+        window.location.href = 'http://localhost:3000/';
     };
+
 
 
 

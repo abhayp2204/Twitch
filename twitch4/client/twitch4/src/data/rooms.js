@@ -13,13 +13,13 @@ const rooms = [
     //     origurl: 'https://www.youtube.com/watch?v=6fm-uj8E8lI',
     //     url: "https://www.youtube.com/embed/6fm-uj8E8lI",
     // },
-    // {
-    //     value: "halo",
-    //     label: "Halo",
-    //     desc: "Halo is a military science fiction first-person shooter video game franchise created by Bungie and now managed and developed by 343 Industries, a subsidiary of Microsoft Studios. ",
-    //     origurl: 'https://www.youtube.com/watch?v=VKanxNE-FT4',
-    //     url: "https://www.youtube.com/embed/VKanxNE-FT4",
-    // },
+    {
+        value: "halo",
+        label: "Halo",
+        desc: "Halo is a military science fiction first-person shooter video game franchise created by Bungie and now managed and developed by 343 Industries, a subsidiary of Microsoft Studios. ",
+        origurl: 'https://www.youtube.com/watch?v=VKanxNE-FT4',
+        url: "https://www.youtube.com/embed/VKanxNE-FT4",
+    },
     // {
     //     value: "geoguesser",
     //     label: "GeoGuesser",

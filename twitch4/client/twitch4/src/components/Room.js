@@ -11,7 +11,7 @@ function Room(props) {
             <Navbar />
             <Panel />
             <Video room={props.room} />
-            <Chat room={props.room}/>
+            {/* <Chat room={props.room}/> */}
         </div>
     )
 }

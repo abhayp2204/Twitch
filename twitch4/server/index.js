@@ -18,16 +18,19 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
     console.log('A user connected: ' + socket.id);
 
+    // Message event
     socket.on('message', (data) => {
         console.log('SERVER: Message received from client: ' + data.message);
         socket.broadcast.emit('receive-message', data);
     })
 
+    // Play event
     socket.on('play', (data) => {
-        console.log('SERVER: Play received from client: ' + data.room);
+        console.log('SERVER: ' + data.room + ' is playing at ' + data.time);
         socket.broadcast.emit('play-alert', `Video playing in room: ${data.room}`);
     })
 
+    // Disconnect event
     socket.on('disconnect', () => {
         console.log('A user disconnected: ' + socket.id);
     })
