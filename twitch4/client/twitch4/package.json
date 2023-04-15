@@ -12,6 +12,7 @@
     "react-firebase-hooks": "^5.1.1",
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
+    "react-youtube": "^10.1.0",
     "socket.io-client": "^4.6.1",
     "web-vitals": "^2.1.4"
   },
