@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
     // Play event
     socket.on('play', (data) => {
         console.log('SERVER: ' + data.room + ' is playing at ' + data.time);
-        socket.broadcast.emit('play-alert', `Video playing in room: ${data.room}`);
+        socket.broadcast.emit('play-alert', data);
     })
 
     // Disconnect event
