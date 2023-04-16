@@ -30,6 +30,12 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('play-alert', data);
     })
 
+    // Pause event
+    socket.on('pause', (data) => {
+        console.log('SERVER: ' + data.room + ' is paused at ' + data.time);
+        socket.broadcast.emit('pause-alert', data);
+    })
+
     // Disconnect event
     socket.on('disconnect', () => {
         console.log('A user disconnected: ' + socket.id);

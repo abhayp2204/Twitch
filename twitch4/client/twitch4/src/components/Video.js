@@ -2,84 +2,123 @@ import React, { useState, useEffect } from 'react'
 import '../css/Video.css'
 import io from 'socket.io-client'
 import YouTube from 'react-youtube'
+import { auth } from '../firebase'
 
 function Video(props) {
     const socket = io.connect('http://localhost:3001')
-    const [playerReady, setPlayerReady] = useState(false)
-    const [playTime, setPlayTime] = useState(0)
-    const [opts, setOpts] = useState({height: '100%', width: '100%', playerVars: {autoplay: 0, start: 0}})
     const [key, setKey] = useState(0)
+    const [opts, setOpts] = useState({
+        height: '100%',
+        width: '100%',
+        playerVars: {
+            autoplay: 0,
+            start: 0
+        }
+    })
+
+    console.log(auth.currentUser.displayName === 'apple pie')
 
     // generate unique id
     const generateId = () => {
         return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
     }
 
-    // const handleReady = (event) => {
-    //     setPlayerReady(true)
-
-    //     if (playTime !== 0 && playerReady) {
-    //         event.target.seekTo(playTime)
-    //         setPlayTime(0)
-    //     }
-    // }
 
     const handlePlay = (event) => {
         console.log("CLIENT: (play event): time = " + event.target.getCurrentTime())
-        socket.emit('play', {room: props.room.label, time: event.target.getCurrentTime()})
+        if (auth.currentUser.displayName !== 'apple pie') return
+        socket.emit('play', {
+            room: props.room.label,
+            time: event.target.getCurrentTime(),
+            user: auth.currentUser,
+        })
     }
 
-    const handleStateChange = (event) => {
-        return
-        console.log("state change")
-        const state = event.target.getPlayerState()
-
-        if (state === YouTube.PlayerState.PLAYING) {
-            console.log("playing")
-            const currentTime = event.target.getCurrentTime()
-            console.log(currentTime)
-        }
+    const handlePause = (event) => {
+        console.log("CLIENT: (pause event): time = " + event.target.getCurrentTime())
+        if (auth.currentUser.displayName !== 'apple pie') return
+        socket.emit('pause', {
+            room: props.room.label,
+            time: event.target.getCurrentTime(),
+            user: auth.currentUser,
+        })
     }
 
     const sendMsg = () => {
-        socket.emit('message', {message: 'Hello from client'})
+        socket.emit('message', {
+            message: 'Hello from client',
+            user: auth.currentUser,
+        })
     }
     
 
     useEffect(() => {
         console.log("Listening for play-alert")
         socket.on('play-alert', (data) => {
+            if (data.user.displayName === auth.currentUser.displayName) return
+            
             console.log("CLIENT: (play-alert event): room = " + data.room + ", time = " + data.time)
 
             // play video in this room at the time specified 
-            console.log("seeking to " + data.time)
+            console.log("SHARK seeking to " + data.time)
+
+            setKey(generateId())
+            setOpts({
+                height: '100%',
+                width: '100%',
+                playerVars: {
+                    autoplay: 1,
+                    start: Math.floor(data.time),
+                }
+            })
         })
 
+        socket.on('pause-alert', (data) => {
+            if (data.user.displayName === auth.currentUser.displayName) return
+
+            console.log("CLIENT: (pause-alert event): room = " + data.room + ", time = " + data.time)
+
+            setKey(generateId())
+            setOpts({
+                height: '100%',
+                width: '100%',
+                playerVars: {
+                    autoplay: 0,
+                    start: data.time,
+                }
+            })
+        })
+
+
         socket.on('receive-message', (data) => {
+            if (data.user.displayName === auth.currentUser.displayName) return
+
             // start video
             console.log("STARTING VIDEO")
             setKey(generateId())
             setOpts({height: '100%', width: '100%', playerVars: {autoplay: 1, start: 0}})
         })
 
-        return () => {
-            socket.off('play-alert')
-            socket.off('receive-message')
-        }
+
+        // return () => {
+        //     socket.off('play-alert')
+        //     socket.off('receive-message')
+        // }
     }, [opts])
 
-    
+    console.log("autoplay = ", opts.playerVars.autoplay)
+
     return (
         <div className='video-container'>
-            <button onClick={sendMsg}>Set Player</button>
+            <button onClick={sendMsg}>Reset other players</button>
             <YouTube
                 key={key}
                 className='youtube-player'
                 videoId='OkFdqqyI8y4'
+
                 onPlay={handlePlay}
-                // onPause={handlePause}
-                // onReady={handleReady}
-                onStateChange={handleStateChange}
+                onPause={handlePause}
+
                 opts={opts}
             />
             <div className='room-description'>
