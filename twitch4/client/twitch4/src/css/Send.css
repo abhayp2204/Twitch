@@ -1,47 +1,55 @@
 .send {
     display: flex;
     position: relative;
-    background-color: #fff;
+    background-color: #161616;
+    
     padding: 16px;
     border-top: 1px solid #ddd;
     margin-bottom: 20px;
   }
   
-  .send-input {
+.send-input {
     flex-grow: 1;
     padding: 10px;
+    width: 94%;
     border: none;
     border-radius: 4px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.5;
     outline: none;
-  }
-  
-  .send-icon {
+    margin: 8px;
+    background-color: #333333;
+    color: white;
+}
+
+.send-input:focus {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    background-color: #333333;
+    color: white;
+    border: 1px solid white;
+}
+
+.send-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
+    width: 100%;
     height: 40px;
-    background-color: var(--button-color);
     color: #fff;
     border: none;
-    border-radius: 50%;
+    border-radius: 5px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    position: absolute;
-    bottom: 16px;
-    right: 16px;
-  }
+    transition: background-color 0.4s ease-in-out;
+    background-color: rgb(140, 10, 40);
+}
+
+.send-icon:hover {
+    background-color: var(--button-color);
+}
   
-  .send-icon:hover {
-    background-color: #3c79e6;
-  }
-  
-  .dummy {
+.dummy {
     height: 0;
     visibility: hidden;
-  }
-  
+}

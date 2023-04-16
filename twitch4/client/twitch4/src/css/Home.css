@@ -61,12 +61,6 @@ select {
     width: 105%;
 }
 
-/* button[type="submit"]:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-} */
-
-
 .link-button-fancy-3 {
     display: inline-block;
     padding: 10px 20px;

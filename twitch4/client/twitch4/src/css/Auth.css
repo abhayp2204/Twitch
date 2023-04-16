@@ -16,11 +16,11 @@
     cursor: pointer;
     font-size: 30px;
     font-weight: bold;
-    transition: background-color 0.2s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }
   
 .sign-in-btn:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 .sign-out-button {
@@ -40,9 +40,6 @@
 
 .sign-out-button:hover {
     cursor: pointer;
-    background-color: var(--button-color);
-    background-color: rgb(74, 4, 28);
-    border-color: var(--button-color);
     transform: scale(1.1);
 }
   

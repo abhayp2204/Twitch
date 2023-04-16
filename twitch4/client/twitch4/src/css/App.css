@@ -3,6 +3,18 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;
     margin: 0;
-    --button-color: #00FFFF;
-    --button-color: #E71D36;
+    
+    /* colors */
+    --youtube: #E71D36;
+    --magenta: #A80874;
+    --cyan: #00FFFF;
+    --mustard: #FDCA40;
+    --ivy: #31E981;
+    --crimson: #E81C62;
+    --aqua: #2AF5FF;
+    --libra: #5AFF15;
+    --button-color: var(--youtube);
+
+    background-color: #161616;
+    color: #bbbbbb;
 }

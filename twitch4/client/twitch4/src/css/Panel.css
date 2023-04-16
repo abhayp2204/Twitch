@@ -1,24 +1,44 @@
 .panel {
-    position: fixed;
-    left: 0;
-    top: 60px;
-    bottom: 0;
-    width: 300px;
-    background-color: #f2f2f2;
+    margin-left: 20px;
+    width: 250px;
+    background: linear-gradient(to bottom, var(--button-color), lighten(var(--button-color), 20%));
     overflow-y: auto;
 }
 
-.panel-room {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    cursor: pointer;
+.panel-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0;
+    /* color: var(--button-color); */
 }
-  
+
+.panel-rooms {
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+    margin-top: 10px;   
+}
+
+
+.panel-room {
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    width: 200px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.active {
+    color: var(--button-color);
+}
+
 .panel-room:last-child {
     border-bottom: none;
 }
-  
+
 .panel-room:hover {
-    background-color: #ddd;
+    color: var(--button-color);
 }
-  

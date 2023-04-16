@@ -1,7 +1,6 @@
 .navbar {
-    background-color: #333;
     background-color: var(--button-color);
-    color: #fff;
+    color: white;
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
@@ -12,6 +11,8 @@
 .navbar-brand {
     font-size: 1.4rem;
     font-weight: bold;
+    color: white;
+    background-color: var(--button-color);
 }
 
 .navbar-menu {
@@ -20,17 +21,23 @@
     margin: 0;
     padding: 0;
     margin-right: 20px;
+    color: white;
+    background-color: var(--button-color);
 }
 
 .navbar-item {
     margin-right: 20px;
     margin-top: 8px;
+    color: white;
+    background-color: var(--button-color);
 }
 
 .navbar-link {
     color: #fff;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
+    color: white;
+    background-color: var(--button-color);
 }
 
 .navbar-link:hover {

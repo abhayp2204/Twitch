@@ -8,6 +8,7 @@
     padding: 40px;
 
     background-color: var(--button-color);
+    color: black;
 }
 
 .profile-container img {
@@ -17,23 +18,30 @@
 
 .profile-info {
     margin-top: 20px;
+    background-color: var(--button-color);
 }
 
 .profile-name {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 10px;
+    background-color: var(--button-color);
+    color: black;
 }
 
 .profile-email {
     font-size: 1rem;
     font-weight: 400;
+    background-color: var(--button-color);
+    color: black;
 }
 
 .profile-favorite-rooms-title {
     font-size: 1.5rem;
     font-weight: 600;
     margin-top: 40px;
+    background-color: var(--button-color);
+    color: black;
 }
 
 .profile-favorite-rooms {
@@ -44,18 +52,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--button-color);
 }
 
 .profile-favorite-room {
-    background-color: black;
+    color: white;
     border-radius: 10px;
     padding: 16px;
     width: 200px;
     margin: 9px;
     transition: all 0.3s ease-in-out;
+    background-color: var(--button-color);
+    background-color: black;
+    cursor: pointer;
 }
 
 .profile-favorite-room:hover {
     transform: scale(1.1);
-    background-color: rgb(74, 4, 28);
+    background-color: #087F8C;
 }

@@ -56,7 +56,6 @@ function Home(props) {
                 Custom Room
                 <input type="text" value={customRoom} onChange={handleCustomRoomChange} />
             </label>
-            {console.log("room = ", room)}
             <Link className="link-button-fancy-3" to={room}>
                 Join Room
             </Link>

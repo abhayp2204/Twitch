@@ -110,11 +110,11 @@ function Video(props) {
 
     return (
         <div className='video-container'>
-            <button onClick={sendMsg}>Reset other players</button>
+            {/* <button onClick={sendMsg}>Reset other players</button> */}
             <YouTube
                 key={key}
                 className='youtube-player'
-                videoId='OkFdqqyI8y4'
+                videoId={props.room.videoId}
 
                 onPlay={handlePlay}
                 onPause={handlePause}
