@@ -20,14 +20,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    margin-right: 20px;
-    color: white;
-    background-color: var(--button-color);
-}
-
-.navbar-item {
-    margin-right: 20px;
-    margin-top: 8px;
+    margin-right: 40px;
     color: white;
     background-color: var(--button-color);
 }
@@ -37,9 +30,16 @@
     text-decoration: none;
     transition: all 0.2s ease-in-out;
     color: white;
+    margin-top: 5px;
     background-color: var(--button-color);
 }
 
 .navbar-link:hover {
     color: #f1f1f1;
+}
+
+.icon {
+    font-size: 1.5rem;
+    color: purple;
+    background-color: none;
 }

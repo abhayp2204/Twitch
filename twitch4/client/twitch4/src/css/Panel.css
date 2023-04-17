@@ -3,6 +3,12 @@
     width: 250px;
     background: linear-gradient(to bottom, var(--button-color), lighten(var(--button-color), 20%));
     overflow-y: auto;
+    opacity: 0.9;
+    transition: ease-in-out 600ms;
+}
+
+.panel:hover {
+    opacity: 1;
 }
 
 .panel-title {
@@ -11,6 +17,29 @@
     text-align: center;
     margin: 10px 0;
     /* color: var(--button-color); */
+}
+
+.panel-favorites {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.panel-favorite {
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    width: 100px;
+}
+
+.panel-favorite-active {
+    background-color: var(--button-color);
+    color: white;
 }
 
 .panel-rooms {
@@ -27,11 +56,13 @@
     padding: 20px;
     border-bottom: 1px solid #ddd;
     width: 200px;
+    height: 30px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    font-size: 22px;
 }
 
-.active {
+.panel-room-active {
     color: var(--button-color);
 }
 
@@ -42,8 +73,4 @@
 
 .panel-room:last-child {
     border-bottom: none;
-}
-
-.panel-room:hover {
-    color: var(--button-color);
 }

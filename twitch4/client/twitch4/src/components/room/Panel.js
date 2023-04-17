@@ -9,13 +9,14 @@ import { useCollectionData } from "react-firebase-hooks/firestore"
 function Panel() {
     const url = window.location.href
     const currentRoom = url.substring(url.lastIndexOf('/') + 1)
+    const currentRoomLabel = rooms.filter((room) => room.value === currentRoom)[0].label
     const favoriteRef = firestore.collection('favorite')
 
     const addFavorite = async(e) => {
         e.preventDefault()
 
         // if already in favorites, remove from favorites
-        if(favorites?.includes(currentRoom)) {
+        if(favoriteRooms?.includes(currentRoom)) {
             const favoriteSnapshot = await favoriteRef.where('room', '==', currentRoom).get();
             favoriteSnapshot.forEach((doc) => {
                 doc.ref.delete();
@@ -25,29 +26,40 @@ function Panel() {
 
         await favoriteRef.add({
             room: currentRoom,
+            roomLabel: currentRoomLabel,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            user: auth.currentUser.uid
         })
     }
 
     // get list of rooms in favorites
-    const [favoritesData] = useCollectionData(favoriteRef, { idField: 'id' })
-    const favorites = favoritesData?.map((favorite) => favorite.room)
-    console.log(favorites)
+    const [favorites] = useCollectionData(favoriteRef, { idField: 'id' })
+    const favoriteRooms = favorites?.map((fav) => fav.room)
 
 
     return (
         <div className='panel'>
             <div className='panel-title'>Rooms</div>
+            <div className='panel-favorites'>
+                {favorites?.map((room) => (
+                    <Link
+                        to={`http://localhost:3000/${room.room}`}
+                        key={room.room}
+                        className={`panel-favorite ${(room.room === currentRoom ? 'panel-favorite-active' : '')}`}
+                        onDoubleClick={addFavorite}
+                    >
+                        {room.roomLabel}
+                    </Link>
+                ))}
+            </div>
             <div className='panel-rooms'>
-                {rooms.map((room) => (
+                {rooms
+                    .filter((room) => !favorites?.some((fav) => fav.room === room.value))
+                    .map((room) => (
                     <Link
                         to={`http://localhost:3000/${room.value}`}
-                        className={
-                            `panel-room
-                            ${room.value === currentRoom? 'active' : ''}
-                            ${favorites?.includes(room.value)? 'favorite' : ''}`
-                        }
-                        key={room.value}
+                        className={`panel-room ${room.value === currentRoom ? 'panel-room-active' : ''}`}
+                        key={room.room}
                         onDoubleClick={addFavorite}
                     >
                         {room.label}

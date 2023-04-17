@@ -18,7 +18,7 @@ const rooms = [
     {
         value: "halo",
         label: "Halo",
-        desc: "Halo is a military science fiction first-person shooter video game franchise created by Bungie and now managed and developed by 343 Industries, a subsidiary of Microsoft Studios. ",
+        desc: "In the vast and mysterious expanse of the cosmos, a battle for the fate of humanity wages on a scale that dwarfs the imagination. At the center of this conflict stands the legendary franchise that has captured the hearts and minds of millions. Halo is a celebration of the human spirit, and the indomitable will to survive in the face of overwhelming odds.",
         origurl: 'https://www.youtube.com/watch?v=VKanxNE-FT4',
         url: "https://www.youtube.com/embed/VKanxNE-FT4",
         videoId: "VKanxNE-FT4",
@@ -34,7 +34,7 @@ const rooms = [
     {
         value: "music",
         label: "Music",
-        desc: "Music is an art form and cultural activity whose medium is sound organized in time.",
+        desc: "Waka Waka (This Time for Africa) is the official song of the 2010 FIFA World Cup, performed by Colombian singer Shakira featuring South African band Freshlyground.",
         origurl: 'https://www.youtube.com/watch?v=pRpeEdMmmQ0',
         url: "https://www.youtube.com/embed/pRpeEdMmmQ0",
         videoId: "pRpeEdMmmQ0",
@@ -43,7 +43,7 @@ const rooms = [
     {
         value: "movies",
         label: "Movies",
-        desc: "Movies are a form of visual communication which uses moving pictures and sound to tell stories or teach people something.",
+        desc: "My name is Maximus Decimus Meridius, commander of the Armies of the North, General of the Felix Legions and loyal servant to the true emperor, Marcus Aurelius. Father to a murdered son, husband to a murdered wife. And I will have my vengeance, in this life or the next.",
         origurl: 'https://www.youtube.com/watch?v=lKn-Agk-yAI',
         url: "https://www.youtube.com/embed/lKn-Agk-yAI",
         videoId: "lKn-Agk-yAI",

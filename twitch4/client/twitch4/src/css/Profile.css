@@ -41,7 +41,17 @@
     font-weight: 600;
     margin-top: 40px;
     background-color: var(--button-color);
-    color: black;
+
+    /* color that looks good with red background */
+    color: white;
+}
+
+.profile-favorite-rooms-empty {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 10px;
+    background-color: var(--button-color);
+    color: white;
 }
 
 .profile-favorite-rooms {
@@ -65,6 +75,7 @@
     background-color: var(--button-color);
     background-color: black;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .profile-favorite-room:hover {
