@@ -1,13 +1,13 @@
 // React, Components, Icons
 import React, { useState, useRef } from "react"
 import ChatMessage from "./ChatMessage"
-import "../css/Send.css"
+import "../../css/Send.css"
 
 // Firebase
 import firebase from "firebase/compat/app"
 import "firebase/compat/firestore"
 import "firebase/compat/auth"
-import { auth, firestore } from "../firebase"
+import { auth, firestore } from "../../firebase"
 import { useCollectionData } from "react-firebase-hooks/firestore"
 
 function Send(props) {

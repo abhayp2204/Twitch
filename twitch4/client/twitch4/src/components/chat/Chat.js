@@ -1,5 +1,5 @@
 import React from 'react'
-import '../css/Chat.css'
+import '../../css/Chat.css'
 
 // firebase
 import firebase from 'firebase/compat/app';
@@ -7,7 +7,7 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { auth, firestore } from '../firebase'
+import { auth, firestore } from '../../firebase'
 
 import ChatMessage from './ChatMessage'
 import Send from './Send';

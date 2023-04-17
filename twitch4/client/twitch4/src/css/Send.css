@@ -1,11 +1,12 @@
 .send {
     display: flex;
-    position: relative;
     background-color: #161616;
     
     padding: 16px;
     border-top: 1px solid #ddd;
+    width: 80%;
     margin-bottom: 20px;
+    margin-left: 20px;
   }
   
 .send-input {

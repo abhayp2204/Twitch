@@ -6,7 +6,7 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { auth, firestore } from '../firebase'
+import { auth, firestore } from '../../firebase'
 
 function ChatMessage(props) {
     const { text, uid, photoURL } = props.message

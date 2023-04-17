@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import '../css/Room.css'
+import '../../css/Room.css'
 import Panel from './Panel'
 import Navbar from './Navbar'
 import Video from './Video'
-import Chat from './Chat'
+import Chat from '../chat/Chat'
 
 function Room(props) {
     const [smallWindow, setSmallWindow] = useState(false)

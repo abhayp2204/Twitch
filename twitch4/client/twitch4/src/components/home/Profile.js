@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage"
-import { firestore, auth } from "../firebase"
+import { firestore, auth } from "../../firebase"
 import { v4 } from "uuid"
-import "../css/Profile.css"
+import "../../css/Profile.css"
 
-import SignOut from "./SignOut"
+import SignOut from "../auth/SignOut"
 
 const favoriteRooms = [
     {id: 0, room: "Skyrim"},

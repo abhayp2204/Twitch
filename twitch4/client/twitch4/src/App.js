@@ -12,9 +12,9 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { auth, firestore } from './firebase';
 
 // components
-import SignIn from './components/SignIn';
-import Home from './components/Home';
-import Room from './components/Room';
+import SignIn from './components/auth/SignIn';
+import Home from './components/home/Home';
+import Room from './components/room/Room';
 import rooms from './data/rooms';
 
 const socket = io('http://localhost:3001');
@@ -22,24 +22,13 @@ const socket = io('http://localhost:3001');
 function App() {
     const [user] = useAuthState(auth);
 
-    // const sendMessage = () => {
-    //     console.log('CLIENT: Sending message...');
-    //     socket.emit('message', {message: 'Hello from client'});
-    // };
-
-    // useEffect(() => {
-    //     socket.on('receive-message', (data) => {
-    //         console.log('CLIENT: received broadcast from server: ' + data.message);
-    //         alert(data.message)
-    //     });
-    // }, [socket]);
-
 
     if(!user) {
         return (
             <SignIn />
         );
     }
+
 
     return (
         <Router>
@@ -49,10 +38,12 @@ function App() {
                     <Route
                         key={room.value}
                         path={`/${room.value}`}
-                        element={<Room
-                                    room={room}
-                                    user={user}
-                                />}
+                        element={
+                            <Room
+                                room={room}
+                                user={user}
+                            />
+                        }
                     />
                 ))}
             </Routes>

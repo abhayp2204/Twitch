@@ -35,6 +35,11 @@
     color: var(--button-color);
 }
 
+.favorite {
+    /* gold color */
+    color: #FFD700;
+}
+
 .panel-room:last-child {
     border-bottom: none;
 }

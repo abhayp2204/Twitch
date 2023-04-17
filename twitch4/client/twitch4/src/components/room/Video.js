@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import '../css/Video.css'
+import '../../css/Video.css'
 import io from 'socket.io-client'
 import YouTube from 'react-youtube'
-import { auth } from '../firebase'
+import { auth } from '../../firebase'
 
 function Video(props) {
     const socket = io.connect('http://localhost:3001')

@@ -1,8 +1,8 @@
 import React, { useState, createContext, useEffect } from 'react';
-import "../css/Home.css";
+import "../../css/Home.css";
 import { Link } from "react-router-dom"
-import rooms from "../data/rooms";
-import SignOut from './SignOut';
+import rooms from "../../data/rooms";
+import SignOut from '../auth/SignOut';
 import Profile from './Profile';
 import io from 'socket.io-client'
 
