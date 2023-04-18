@@ -10,22 +10,13 @@ import { UisHouseUser } from '@iconscout/react-unicons-solid'
 import { UilSync } from '@iconscout/react-unicons'
 
 function Navbar() {
-    const [syncToggle, setSyncToggle] = useState(false)
-
-    const styles = {
-        color: 'red',
-        border: '0',
-    }
-
-    
-
     return (
         <nav className='navbar'>
             <div className='navbar-brand'>
                 Twitchy
             </div>
             <ul className='navbar-menu'>
-                <Link className='navbar-link'><UisHouseUser style={styles} className='icon' /></Link>
+                <Link to='/' className='navbar-link'><UisHouseUser className='icon' /></Link>
             </ul>
         </nav>
     )

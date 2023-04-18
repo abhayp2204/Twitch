@@ -48,3 +48,8 @@
     padding: 10px;
     background-color: none;
 }
+
+.icon:hover {
+    height: 21px;
+    border: 2px solid white;
+}
