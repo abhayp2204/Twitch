@@ -14,6 +14,12 @@ function SignIn() {
         const provider = new firebase.auth.GoogleAuthProvider()
         auth.signInWithPopup(provider)
     }
+
+    const signInWithGithub = () => {
+        const provider = new firebase.auth.GithubAuthProvider()
+        auth.signInWithPopup(provider)
+    }
+
     return (
         <div className="sign-in-container">
             <button className="sign-in-btn" onClick={signInWithGoogle}>Sign In With Google</button>

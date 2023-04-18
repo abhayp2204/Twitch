@@ -54,3 +54,32 @@
 .room-title:hover + .video-container {
     opacity: 0;
 }
+
+.dummy-sync-background {
+    position: absolute;
+    left: 500px;
+    top: 730px;
+    width: 30px;
+    height: 25px;
+    border-radius: 20px;
+    padding: 10px;
+    /* background-color: red; */
+}
+
+.sync {
+    position: absolute;
+    right: 500px;
+    top: 740px;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    border: 3px solid white;
+    padding: 8px;
+    transition: ease-in-out 300ms;
+}
+
+.sync:hover {
+    border: 3px solid var(--button-color);
+    transform: scale(1.05);
+    cursor: pointer;
+}

@@ -60,6 +60,7 @@ select {
 
 select {
     width: 105%;
+    cursor: pointer;
 }
 
 .link-button-fancy-3 {

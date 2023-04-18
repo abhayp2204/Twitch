@@ -3,6 +3,9 @@ import '../../css/Video.css'
 import io from 'socket.io-client'
 import YouTube from 'react-youtube'
 import { auth } from '../../firebase'
+import { Link } from 'react-router-dom'
+import { UilSync } from '@iconscout/react-unicons'
+import { UilSyncSlash } from '@iconscout/react-unicons'
 
 function Video(props) {
     const socket = io.connect('http://localhost:3001')
@@ -15,6 +18,7 @@ function Video(props) {
             start: 0
         }
     })
+    const [sync, setSync] = useState(true)
 
     console.log(auth.currentUser.displayName === 'apple pie')
 
@@ -25,24 +29,36 @@ function Video(props) {
 
 
     const handlePlay = (event) => {
+        if (!sync) return
+
         console.log("CLIENT: (play event): time = " + event.target.getCurrentTime())
         if (auth.currentUser.displayName !== 'apple pie') return
+
         socket.emit('play', {
             room: props.room.label,
             time: event.target.getCurrentTime(),
             user: auth.currentUser,
         })
     }
-
+    
     const handlePause = (event) => {
+        if (!sync) return
+
         console.log("CLIENT: (pause event): time = " + event.target.getCurrentTime())
         if (auth.currentUser.displayName !== 'apple pie') return
+        
         socket.emit('pause', {
             room: props.room.label,
             time: event.target.getCurrentTime(),
             user: auth.currentUser,
         })
     }
+
+
+    const handleSyncToggle = () => {
+        setSync(!sync)
+    }
+
 
     const sendMsg = () => {
         socket.emit('message', {
@@ -54,13 +70,14 @@ function Video(props) {
 
     useEffect(() => {
         console.log("Listening for play-alert")
+
         socket.on('play-alert', (data) => {
             if (data.user.displayName === auth.currentUser.displayName) return
             
             console.log("CLIENT: (play-alert event): room = " + data.room + ", time = " + data.time)
 
             // play video in this room at the time specified 
-            console.log("SHARK seeking to " + data.time)
+            console.log("CLIENT seeking to " + data.time)
 
             setKey(generateId())
             setOpts({
@@ -100,10 +117,10 @@ function Video(props) {
         })
 
 
-        // return () => {
-        //     socket.off('play-alert')
-        //     socket.off('receive-message')
-        // }
+        return () => {
+            socket.off('play-alert')
+            socket.off('receive-message')
+        }
     }, [opts])
 
     console.log("autoplay = ", opts.playerVars.autoplay)
@@ -123,6 +140,11 @@ function Video(props) {
             <div className='room-description'>
                 <div className='room-title'>{props.room.label}</div>
                 <div className='room-desc'>{props.room.desc}</div>
+                <div className='dummy-sync-background'></div>
+                {sync ?
+                    <UilSync className='sync' onClick={handleSyncToggle} /> :
+                    <UilSyncSlash className='sync' onClick={handleSyncToggle}
+                />}
             </div>
         </div>
     )
