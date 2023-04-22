@@ -12,12 +12,27 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { auth, firestore } from '../../firebase';
 import { Link } from 'react-router-dom'
 
+// Bootstrap
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
+
 function Room(props) {
     const [smallWindow, setSmallWindow] = useState(false)
     const roomsRef = firestore.collection('rooms')
     const [rooms] = useCollectionData(roomsRef, { idField: 'value' })
+    const [show, setShow] = useState(false);
+    const [password, setPassword] = useState('');
 
-    console.log("Room props = ", props.rooms)
+
+    const askPassword = (e, password) => {
+    }
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    
 
 
     // event listener for window resize
@@ -55,7 +70,27 @@ function Room(props) {
                     <div className='custom-room-container'>
                         <div className='custom-room-title'>Custom Rooms</div>
                         {props.rooms && props.rooms.map((room) => (
-                            <Link to={`http://localhost:3000/${room.value}`} key={room.value} className='custom-room'>{room.label}</Link>
+                        <>
+                            <Link
+                                to={`http://localhost:3000/${room.value}`}
+                                key={room.value}
+                                className='custom-room'
+                                onClick={() => setShow(!show)}
+                            >
+                                {room.label}
+                            </Link>
+                            {show &&
+                            <>
+                                <input
+                                    type='password'
+                                    placeholder='Password'
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                                <button onClick={askPassword}>Enter</button>
+                            </>
+                            }
+                        </>
                         ))}
                     </div>
 
