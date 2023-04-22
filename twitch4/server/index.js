@@ -36,6 +36,16 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('pause-alert', data);
     })
 
+    // Join event
+    socket.on('join', (data) => {
+        console.log('SERVER: ' + data.name + ' joined ' + data.room);
+        socket.broadcast.emit('join-alert', {
+            message: data.name + ' joined ' + data.room,
+            photoUrl: data.photoUrl,
+        });
+    })
+
+
     // Disconnect event
     socket.on('disconnect', () => {
         console.log('A user disconnected: ' + socket.id);

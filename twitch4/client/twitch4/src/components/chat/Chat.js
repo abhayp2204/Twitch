@@ -14,15 +14,46 @@ import Send from './Send';
 
 function Chat(props) {
     const messagesRef = firestore.collection(props.room.value)
-    const query = messagesRef.orderBy('createdAt').limit(25)
+    const query = messagesRef.orderBy('createdAt').limit(8)
 
     const [messages] = useCollectionData(query, { idField: 'id' })
+
+    const deleteMessages = async () => {
+        try {
+            await messagesRef.get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    doc.ref.delete();
+                });
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
+    const filteredMessages = messages?.filter((msg, index, arr) => {
+        if (index === 0) {
+          return true; // always include the first message
+        }   
+        const prevMsg = arr[index - 1];
+
+        if (msg.createdAt === null || prevMsg.createdAt === null) {
+            return;
+        }
+
+
+        const timeDiff = msg.createdAt.toMillis() - prevMsg.createdAt.toMillis();
+        return timeDiff > 10; // only include messages with a time difference of at least 5 seconds
+    });
 
     return (
         <div className='chat-container'>
             <div className='message-container'>
-                {messages && messages.map((msg, key) => <ChatMessage key={msg.id} message={msg} />)}
+                {filteredMessages?.map((msg) => (
+                    <ChatMessage key={msg.id} message={msg} />
+                ))}
             </div>
+            <button onClick={deleteMessages}>Delete all messages</button>
             <Send room={props.room} />
         </div>
     )

@@ -2,14 +2,21 @@ import React, { useState, useEffect } from 'react'
 import '../../css/Video.css'
 import io from 'socket.io-client'
 import YouTube from 'react-youtube'
-import { auth } from '../../firebase'
 import { Link } from 'react-router-dom'
 import { UilSync } from '@iconscout/react-unicons'
 import { UilSyncSlash } from '@iconscout/react-unicons'
 
+// Firebase
+import firebase from "firebase/compat/app"
+import "firebase/compat/firestore"
+import "firebase/compat/auth"
+import { auth, firestore } from "../../firebase"
+import { useCollectionData } from "react-firebase-hooks/firestore"
+
 function Video(props) {
     const socket = io.connect('http://localhost:3001')
     const [key, setKey] = useState(0)
+    const messagesRef = firestore.collection(props.room.value)
     const [opts, setOpts] = useState({
         height: '100%',
         width: '100%',
@@ -106,6 +113,20 @@ function Video(props) {
             })
         })
 
+        socket.on('join-alert', (data) => {
+            console.log(data.message);
+
+            const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+
+            messagesRef.add({
+                text: data.message,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                id: id,
+                photoURL: auth.currentUser.photoURL,
+            })
+        });
+          
+
 
         socket.on('receive-message', (data) => {
             if (data.user.displayName === auth.currentUser.displayName) return
@@ -120,6 +141,8 @@ function Video(props) {
         return () => {
             socket.off('play-alert')
             socket.off('receive-message')
+            socket.off('message')
+            socket.off('join-alert')
         }
     }, [opts])
 

@@ -5,8 +5,18 @@ import Navbar from './Navbar'
 import Video from './Video'
 import Chat from '../chat/Chat'
 
+// firebase
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { auth, firestore } from '../../firebase';
+
 function Room(props) {
     const [smallWindow, setSmallWindow] = useState(false)
+    const roomsRef = firestore.collection('rooms')
+    const [rooms] = useCollectionData(roomsRef, { idField: 'value' })
+
+    console.log("Room props = ", props.rooms)
 
 
     // event listener for window resize
@@ -35,7 +45,7 @@ function Room(props) {
         <div className='room'>
             <Navbar />
             <div className='room-elements'>
-                {!smallWindow && <Panel />}
+                {!smallWindow && <Panel rooms={props.rooms} />}
                 <Video room={props.room} />
                 <Chat room={props.room}/>
             </div>

@@ -1,9 +1,9 @@
 .title {
-    margin-top: 90px;
+    margin-top: 0px;
     font-size: 3rem;
     font-weight: bold;
     text-align: center;
-    margin: 1.5rem 0;
+    margin: 1rem 0;
     color: var(--button-color);
 }
 
@@ -24,8 +24,6 @@
 .welcome {
     font-size: 1.5rem;
     text-align: center;
-    margin: 1.5rem 0;
-    margin-top: 20px;
     width: 520px;
     color: white;
 }
@@ -34,11 +32,11 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 label {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     width: 300px;
     display: flex;
     flex-direction: column;
@@ -81,3 +79,49 @@ select {
     transform: scale(1.1);
 }
   
+.checkbox-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.checkbox-label {
+    color: white;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.checkbox {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    margin-left: 20px;
+}
+
+.checkbox:hover {
+    background-color: var(--button-color);
+
+}
+
+.desc-input {
+    font-size: 20px;
+    width: 500px;
+    height: 100px;
+}
+
+.create-room {
+    background-color: white;
+    color: black;
+    width: 200px;
+    border-radius: 30px;
+    padding: 15px;
+    transition: ease-in-out 300ms;
+}
+
+.create-room:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
