@@ -41,7 +41,7 @@ io.on('connection', (socket) => {
         console.log('SERVER: ' + data.name + ' joined ' + data.room);
         socket.broadcast.emit('join-alert', {
             message: data.name + ' joined ' + data.room,
-            photoUrl: data.photoUrl,
+            room: data.room,
         });
     })
 

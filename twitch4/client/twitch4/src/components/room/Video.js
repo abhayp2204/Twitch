@@ -117,12 +117,12 @@ function Video(props) {
             console.log(data.message);
 
             const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+            const roomRef = firestore.collection(data.room)
 
-            messagesRef.add({
+            roomRef.add({
                 text: data.message,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                 id: id,
-                photoURL: auth.currentUser.photoURL,
             })
         });
           

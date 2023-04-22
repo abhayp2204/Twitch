@@ -31,7 +31,7 @@
     border: 1px solid white;
 }
 
-.send-icon {
+.send-icon .normal{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,4 +53,16 @@
 .dummy {
     height: 0;
     visibility: hidden;
+}
+
+.joining {
+    font-size: 14px;
+    color: #999;
+}
+
+.normal {
+    color: white;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 24px;
 }

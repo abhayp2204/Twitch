@@ -63,7 +63,6 @@ function Home(props) {
         socket.emit('join', {
             name: props.user.displayName,
             room: room,
-            photoUrl: auth.currentUser.photoURL,
         })
     }
 

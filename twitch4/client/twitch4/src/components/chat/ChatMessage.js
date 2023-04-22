@@ -21,8 +21,8 @@ function Message(props) {
     const { text, photoURL } = props
     return (
         <div className="chat-msg chat-msg-received">
-            <img src={photoURL} alt="not found"/>
-            <p>{text}</p>   
+            {photoURL && <img src={photoURL} alt="not found"/>}
+            <div className={`${photoURL? 'normal' : 'joining'}`}>{text}</div>   
         </div>
     )
 }
