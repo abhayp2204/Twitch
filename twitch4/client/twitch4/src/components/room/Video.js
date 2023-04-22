@@ -132,7 +132,14 @@ function Video(props) {
         });
 
         socket.on('change-room-alert', (data) => {
-            // if (data.user.displayName === auth.currentUser.displayName) return
+            if (data.name === auth.currentUser.displayName) {
+                console.log('did nothing')
+                return
+            }
+            else {
+                console.log("data name = " + data.name)
+                console.log("auth name = " + auth.currentUser.displayName)
+            }
             console.log(data.message, data.prevRoom);
 
             const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)

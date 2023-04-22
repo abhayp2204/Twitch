@@ -44,6 +44,8 @@ function Panel(props) {
         console.log('room', room)
         console.log('currentRoom', currentRoom)
 
+        if( room === currentRoom) return
+
 
         socket.emit('change-room', {
             newRoom: room,

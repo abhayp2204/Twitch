@@ -55,6 +55,7 @@ io.on('connection', (socket) => {
             message: data.name + ' went to ' + data.newRoom,
             prevRoom: data.prevRoom,
             newRoom: data.newRoom,
+            name: data.name,
         });
     })
 
