@@ -16,19 +16,17 @@ import { useCollectionData } from "react-firebase-hooks/firestore"
 
 function Home(props) {
     const socket = io.connect('http://localhost:3001')
-    const [nickname, setNickname] = useState('');
     const [room, setRoom] = useState(rooms[0].value);
+    const [joinPassword, setJoinPassword] = useState('');
     const [customRoomChecked, setCustomRoomChecked] = useState(false);
     const [customRoom, setCustomRoom] = useState('');
+    const [customRoomPassword, setCustomRoomPassword] = useState('');
     const [customRoomDesc, setCustomRoomDesc] = useState('');
     const [youtubeUrl, setYoutubeUrl] = useState('');
     const [showCustomRoomFields, setShowCustomRoomFields] = useState(false);    
     const roomsRef = firestore.collection('rooms');
 
 
-    const handleNicknameChange = (event) => {
-        setNickname(event.target.value);
-    };
 
     const handleRoomChange = (event) => {
         setRoom(event.target.value);
@@ -38,6 +36,7 @@ function Home(props) {
         setCustomRoom(event.target.value);
     };
 
+
     const handleJoinChat = (event) => {
         event.preventDefault();
         window.location.href = 'http://localhost:3000/';
@@ -46,7 +45,10 @@ function Home(props) {
     const handleCreateRoom = async (event) => {
         event.preventDefault();
         if (customRoom.trim() === '') return;
+
         const newRoom = {
+            admin: props.user.uid,
+            password: customRoomPassword,
             label: customRoom,
             value: customRoom.toLowerCase(),
             desc: customRoomDesc,
@@ -54,10 +56,27 @@ function Home(props) {
             url: youtubeUrl.replace('watch?v=', 'embed/'),
             videoId: youtubeUrl.replace('https://www.youtube.com/watch?v=', ''),
         };
+
         await roomsRef.add(newRoom);
         setRoom(newRoom.value);
         setCustomRoom('');
+
+        // create new collection for room
+        const roomRef = firestore.collection(newRoom.value);
     };
+
+    const handleJoinCustomRoom = (event) => {
+        event.preventDefault();
+        if (joinPassword.trim() === '') return;
+        const room = props.rooms.find(room => room.password === joinPassword);
+        if (room) {
+            alert(room.label)
+            setRoom(room.value);
+        }
+        else {
+            alert('Incorrect password');
+        }
+    }
 
     const handleJoinRoom = (event) => {
         socket.emit('join', {
@@ -80,6 +99,16 @@ function Home(props) {
                 </select>
             </label>
             <br />
+            <label className='join-custom-room'>
+                Join a Custom Room
+                <input
+                    className='join-custom-room-input'
+                    type="password"
+                    value={joinPassword}
+                    onChange={(e) => setJoinPassword(e.target.value)}
+                />
+                <button className="join-custom-room-button" onClick={handleJoinCustomRoom}>Join</button>
+            </label>
             <label className='checkbox-container'>
                 <div className='checkbox-label'>Custom Room</div>
                 <input
@@ -101,7 +130,16 @@ function Home(props) {
                     </label>
                     <br />
                     <label>
-                    Description
+                        Password
+                        <input
+                            className='password'
+                            type="password"
+                            value={customRoomPassword}
+                            onChange={(e) => setCustomRoomPassword(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        Description
                         <textarea
                             className='desc-input'
                             value={customRoomDesc}

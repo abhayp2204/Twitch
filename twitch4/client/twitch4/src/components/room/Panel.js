@@ -6,10 +6,16 @@ import firebase from "firebase/compat/app"
 import { auth, firestore } from "../../firebase"
 import { useCollectionData } from "react-firebase-hooks/firestore"
 
-function Panel() {
+function Panel(props) {
     const url = window.location.href
     const currentRoom = url.substring(url.lastIndexOf('/') + 1)
-    const currentRoomLabel = rooms.filter((room) => room.value === currentRoom)[0].label
+    const filter = rooms.filter((room) => room.value === currentRoom)
+
+
+    const currentRoomLabel = filter.length  === 0?
+        props.rooms.filter((room) => room.value === currentRoom)[0].label :
+        rooms.filter((room) => room.value === currentRoom)[0].label
+        
     const favoriteRef = firestore.collection('favorite')
 
     const addFavorite = async(e) => {

@@ -24,14 +24,6 @@ const rooms = [
         videoId: "VKanxNE-FT4",
     },
     {
-        value: "geoguesser",
-        label: "GeoGuesser",
-        desc: "GeoGuessr is a geography game which takes you on a journey around the world and challenges your ability to recognize your surroundings. You will be dropped somewhere in the world and your goal is to find clues and make educated guesses to determine your exact location on the map. The game is played in rounds, and each round you will be dropped somewhere new. The more accurate your guess, the more points you will earn.",
-        origurl: 'https://www.youtube.com/watch?v=2KXcQ18JyMs',
-        url: "https://www.youtube.com/embed/2KXcQ18JyMs",
-        videoId: "2KXcQ18JyMs",
-    },
-    {
         value: "music",
         label: "Music",
         desc: "Waka Waka is a song by Colombian singer Shakira, featuring South African band Freshlyground. It was released as the official song of the 2010 FIFA World Cup on 4 May 2010. The song was written by Shakira and Freshlyground's lead singer, Zolani Mahola, and produced by Shakira and John Hill. The song was recorded in English, Spanish, French, Portuguese, and Arabic.",
@@ -48,14 +40,6 @@ const rooms = [
         url: "https://www.youtube.com/embed/lKn-Agk-yAI",
         videoId: "lKn-Agk-yAI",
     },
-    {
-        value: "runescape",
-        label: "Runescape",
-        desc: "Runescape is a fantasy MMORPG developed and published by Jagex. It was originally released in January 2001 and is the world's most popular free-to-play MMORPG, with over 200 million registered accounts, as of February 2019. The game is set in the fictional kingdom of Gielinor, which is divided into different kingdoms, regions, and cities. Players control a character, known as a player character (PC), and explore the game world completing quests and defeating monsters to gain experience and items.",
-        origurl: 'https://www.youtube.com/watch?v=l0f6c2fy35E',
-        url: "https://www.youtube.com/embed/l0f6c2fy35E",
-        videoId: "l0f6c2fy35E",
-    }
 ];
 
 export default rooms;

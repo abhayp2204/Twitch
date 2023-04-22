@@ -22,6 +22,9 @@ const socket = io('http://localhost:3001');
 function App() {
     const [user] = useAuthState(auth);
 
+    const customRoomsRef = firestore.collection('rooms');
+    const [customRooms] = useCollectionData(customRoomsRef, { idField: 'value' });
+
 
     if(!user) {
         return (
@@ -33,7 +36,15 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Home user={user} />} />
+                <Route
+                    path="/"
+                    element={
+                        <Home
+                            user={user}
+                            rooms={customRooms} 
+                        />
+                    } 
+                />
                 {rooms.map((room) => (
                     <Route
                         key={room.value}
@@ -42,10 +53,25 @@ function App() {
                             <Room
                                 room={room}
                                 user={user}
+                                rooms={customRooms}
                             />
                         }
                     />
                 ))}
+                {customRooms && customRooms.map((room) => (
+                    <Route
+                        key={room.value}
+                        path={`/${room.value}`}
+                        element={
+                            <Room
+                                room={room}
+                                user={user}
+                                rooms={customRooms}
+                            />
+                        }
+                    />
+                ))
+                }
             </Routes>
         </Router>
     );

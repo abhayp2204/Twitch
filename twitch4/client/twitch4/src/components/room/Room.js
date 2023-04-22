@@ -10,6 +10,7 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { auth, firestore } from '../../firebase';
+import { Link } from 'react-router-dom'
 
 function Room(props) {
     const [smallWindow, setSmallWindow] = useState(false)
@@ -45,7 +46,21 @@ function Room(props) {
         <div className='room'>
             <Navbar />
             <div className='room-elements'>
-                {!smallWindow && <Panel rooms={props.rooms} />}
+                <div className='room-display'>
+
+                    
+                    {!smallWindow && <Panel rooms={props.rooms} />}
+
+
+                    <div className='custom-room-container'>
+                        <div className='custom-room-title'>Custom Rooms</div>
+                        {props.rooms && props.rooms.map((room) => (
+                            <Link to={`http://localhost:3000/${room.value}`} key={room.value} className='custom-room'>{room.label}</Link>
+                        ))}
+                    </div>
+
+
+                </div>
                 <Video room={props.room} />
                 <Chat room={props.room}/>
             </div>

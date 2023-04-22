@@ -14,16 +14,24 @@ import Send from './Send';
 
 function Chat(props) {
     const messagesRef = firestore.collection(props.room.value)
-    const query = messagesRef.orderBy('createdAt').limit(8)
+    const query = messagesRef.orderBy('createdAt').limit(5)
 
     const [messages] = useCollectionData(query, { idField: 'id' })
 
+    const deleteMessages = () => {
+        messagesRef.get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                doc.ref.delete()
+            })
+        })
+    }
 
     return (
         <div className='chat-container'>
             <div className='message-container'>
-                {messages && messages.map((msg, key) => <ChatMessage key={msg.id} message={msg} room={props.room} />)}
+                {messages && messages.map((msg, key) => <ChatMessage key={msg.id} message={msg} />)}
             </div>
+            <button onClick={deleteMessages}>Delete</button>
             <Send room={props.room} />
         </div>
     )

@@ -125,3 +125,8 @@ select {
     cursor: pointer;
     transform: scale(1.1);
 }
+
+.password {
+    border: 2px solid #bbb;
+    border-radius: 5px;
+}

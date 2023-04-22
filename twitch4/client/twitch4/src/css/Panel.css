@@ -3,8 +3,8 @@
     width: 250px;
     background: linear-gradient(to bottom, var(--button-color), lighten(var(--button-color), 20%));
     overflow-y: auto;
-    opacity: 0.9;
     transition: ease-in-out 600ms;
+    color: white;
 }
 
 .panel:hover {
@@ -16,7 +16,7 @@
     font-weight: bold;
     text-align: center;
     margin: 10px 0;
-    /* color: var(--button-color); */
+    color: white;
 }
 
 .panel-favorites {
