@@ -47,18 +47,14 @@ function Room(props) {
 
 
 const handleSaveChanges = () => {
-    console.log("Entered Password for room", selectedRoom.label, ":", password);
     const originalPassword = selectedRoom.password;
     if (password === originalPassword) {
-        console.log("Entered Password for room", selectedRoom.label, "is correct!");
         // Add your logic for handling correct password here
         window.location.href = `/${selectedRoom.value}`;
         // $(`#${selectedRoom.value}`).click();
-        console.log("Should be at", selectedRoom.value);
     } 
     else {
-        console.log("Entered Password for room", selectedRoom.label, "is incorrect!");
-    // Add your logic for handling incorrect password here
+        // Add your logic for handling incorrect password here
     }
     handleClose();
   };
@@ -67,22 +63,16 @@ const handleSaveChanges = () => {
 // event listener for window resize
 useEffect(() => {
     window.addEventListener('resize', () => {
-        console.log(window.innerWidth)
-
         if (window.innerWidth < 1000) {
             setSmallWindow(true)
-            console.log("Panel hidden")
         }
         else {
             setSmallWindow(false)
-            console.log("Panel shown")
         }
     })
 
     return () => {
-        window.removeEventListener('resize', () => {
-            console.log('window resized')
-        })
+        window.removeEventListener('resize', () => {})
     }
 }, [])
 

@@ -41,9 +41,6 @@ function Panel(props) {
     }
 
     const handleChangeRoom = (room) => {
-        console.log('room', room)
-        console.log('currentRoom', currentRoom)
-
         if( room === currentRoom) return
 
 
