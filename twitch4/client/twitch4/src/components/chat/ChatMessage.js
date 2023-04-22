@@ -1,16 +1,7 @@
 import React from 'react'
 
-// firebase
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
-import 'firebase/compat/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { auth, firestore } from '../../firebase'
-
 function ChatMessage(props) {
-    const { text, uid, photoURL } = props.message
-    const messageClass = uid === auth.currentUser.uid? "sent" : "received"
+    const { text, photoURL } = props.message
 
     return (
         <Message text={text} photoURL={photoURL} />

@@ -14,7 +14,7 @@ import Send from './Send';
 
 function Chat(props) {
     const messagesRef = firestore.collection(props.room.value)
-    const query = messagesRef.orderBy('createdAt').limit(5)
+    const query = messagesRef.orderBy('createdAt').limit(10)
 
     const [messages] = useCollectionData(query, { idField: 'id' })
 

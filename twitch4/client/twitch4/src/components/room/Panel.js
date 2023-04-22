@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom'
 import firebase from "firebase/compat/app"
 import { auth, firestore } from "../../firebase"
 import { useCollectionData } from "react-firebase-hooks/firestore"
+import io from 'socket.io-client'
 
 function Panel(props) {
+    const socket = io.connect('http://localhost:3001')
     const url = window.location.href
     const currentRoom = url.substring(url.lastIndexOf('/') + 1)
     const filter = rooms.filter((room) => room.value === currentRoom)
@@ -38,6 +40,20 @@ function Panel(props) {
         })
     }
 
+    const handleChangeRoom = (room) => {
+        console.log('room', room)
+        console.log('currentRoom', currentRoom)
+
+
+        socket.emit('change-room', {
+            newRoom: room,
+            prevRoom: currentRoom,
+            name: auth.currentUser.displayName
+        })
+    }
+
+
+
     // get list of rooms in favorites
     const [favorites] = useCollectionData(favoriteRef, { idField: 'id' })
     const favoriteRooms = favorites?.map((fav) => fav.room)
@@ -66,7 +82,7 @@ function Panel(props) {
                         to={`http://localhost:3000/${room.value}`}
                         className={`panel-room ${room.value === currentRoom ? 'panel-room-active' : ''}`}
                         key={room.room}
-                        onDoubleClick={addFavorite}
+                        onClick={() => handleChangeRoom(room.label)}
                     >
                         {room.label}
                     </Link>

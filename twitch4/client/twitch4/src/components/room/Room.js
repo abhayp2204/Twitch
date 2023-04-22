@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import '../../css/Room.css'
-import Panel from './Panel'
 import Navbar from './Navbar'
 import Video from './Video'
 import Chat from '../chat/Chat'
+import React, { useState, useEffect } from 'react'
+import Panel from './Panel'
+import '../../css/Room.css'
+
 
 // firebase
 import 'firebase/compat/firestore';
@@ -13,9 +14,9 @@ import { auth, firestore } from '../../firebase';
 import { Link } from 'react-router-dom'
 
 // Bootstrap
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+// import Modal from 'react-bootstrap/Modal'
+// import Button from 'react-bootstrap/Button';
+// import Form from 'react-bootstrap/Form';
 
 
 function Room(props) {
@@ -24,83 +25,117 @@ function Room(props) {
     const [rooms] = useCollectionData(roomsRef, { idField: 'value' })
     const [show, setShow] = useState(false);
     const [password, setPassword] = useState('');
+    const [selectedRoom, setSelectedRoom] = useState(null);
 
 
     const askPassword = (e, password) => {
     }
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
+    const handleClose = () => {
+        setShow(false);
+        setSelectedRoom(null);
+      };
     
+      const handleShow = (room) => {
+        setSelectedRoom(room);
+        setShow(true);
+      };
+
+    const handleChange = (e) => {
+        setPassword(e.target.value);
+    }
 
 
-    // event listener for window resize
-    useEffect(() => {
-        window.addEventListener('resize', () => {
-            console.log(window.innerWidth)
+const handleSaveChanges = () => {
+    console.log("Entered Password for room", selectedRoom.label, ":", password);
+    const originalPassword = selectedRoom.password;
+    if (password === originalPassword) {
+        console.log("Entered Password for room", selectedRoom.label, "is correct!");
+        // Add your logic for handling correct password here
+        window.location.href = `/${selectedRoom.value}`;
+        // $(`#${selectedRoom.value}`).click();
+        console.log("Should be at", selectedRoom.value);
+    } 
+    else {
+        console.log("Entered Password for room", selectedRoom.label, "is incorrect!");
+    // Add your logic for handling incorrect password here
+    }
+    handleClose();
+  };
 
-            if (window.innerWidth < 1000) {
-                setSmallWindow(true)
-                console.log("Panel hidden")
-            }
-            else {
-                setSmallWindow(false)
-                console.log("Panel shown")
-            }
-        })
 
-        return () => {
-            window.removeEventListener('resize', () => {
-                console.log('window resized')
-            })
+// event listener for window resize
+useEffect(() => {
+    window.addEventListener('resize', () => {
+        console.log(window.innerWidth)
+
+        if (window.innerWidth < 1000) {
+            setSmallWindow(true)
+            console.log("Panel hidden")
         }
-    }, [])
-    
-    return (
-        <div className='room'>
-            <Navbar />
-            <div className='room-elements'>
-                <div className='room-display'>
+        else {
+            setSmallWindow(false)
+            console.log("Panel shown")
+        }
+    })
+
+    return () => {
+        window.removeEventListener('resize', () => {
+            console.log('window resized')
+        })
+    }
+}, [])
+
+return (
+    <div className='room'>
+        <Navbar />
+        <div className='room-elements'>
+
+<div className='room-display'>
 
                     
-                    {!smallWindow && <Panel rooms={props.rooms} />}
+{!smallWindow && <Panel rooms={props.rooms} />}
 
 
-                    <div className='custom-room-container'>
-                        <div className='custom-room-title'>Custom Rooms</div>
-                        {props.rooms && props.rooms.map((room) => (
-                        <>
-                            <Link
-                                to={`http://localhost:3000/${room.value}`}
-                                key={room.value}
-                                className='custom-room'
-                                onClick={() => setShow(!show)}
-                            >
-                                {room.label}
-                            </Link>
-                            {show &&
-                            <>
-                                <input
-                                    type='password'
-                                    placeholder='Password'
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                                <button onClick={askPassword}>Enter</button>
-                            </>
-                            }
-                        </>
-                        ))}
-                    </div>
-
-
-                </div>
-                <Video room={props.room} />
-                <Chat room={props.room}/>
+<div className='custom-room-container'>
+<div className='custom-room-title'>Custom Rooms</div>
+{props.rooms && props.rooms.map((room) => (
+    <React.Fragment key={room.value}>
+    <div
+        className='custom-room'
+        onClick={() => handleShow(room)}
+    >
+        {room.label}
+    </div>
+    {show && selectedRoom && selectedRoom.value === room.value && (
+        <div className="modal">
+        <div className="modal-content">
+            <h2>Enter Password to Join</h2>
+            <input
+            type="password"
+            placeholder="Password"
+            autoFocus
+            value={password}
+            onChange={handleChange}
+            />
+            <div className="modal-buttons">
+            <button onClick={handleClose}>Close</button>
+            <button onClick={handleSaveChanges}>Save Changes</button>
             </div>
         </div>
-    )
+        </div>
+    )}
+    </React.Fragment>
+))}
+</div>
+
+
+</div>
+<Video room={props.room} />
+<Chat room={props.room}/>
+</div>
+</div>
+)
 }
 
-export default Room
+export default Room

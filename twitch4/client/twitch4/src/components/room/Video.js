@@ -49,15 +49,12 @@ function Video(props) {
     }
     
     const handlePause = (event) => {
-        if (!sync) return
-
-        console.log("CLIENT: (pause event): time = " + event.target.getCurrentTime())
-        if (auth.currentUser.displayName !== 'apple pie') return
+        console.log("ADMIN: (pause event): time = " + event.target.getCurrentTime())
+        // if (auth.currentUser.displayName !== 'apple pie') return
         
         socket.emit('pause', {
             room: props.room.label,
             time: event.target.getCurrentTime(),
-            user: auth.currentUser,
         })
     }
 
@@ -99,7 +96,6 @@ function Video(props) {
 
         socket.on('pause-alert', (data) => {
             if (data.user.displayName === auth.currentUser.displayName) return
-
             console.log("CLIENT: (pause-alert event): room = " + data.room + ", time = " + data.time)
 
             setKey(generateId())
@@ -110,6 +106,15 @@ function Video(props) {
                     autoplay: 0,
                     start: data.time,
                 }
+            })
+
+            const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+            const roomRef = firestore.collection(data.room)
+
+            roomRef.add({
+                text: data.message,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                id: id,
             })
         })
 
@@ -125,6 +130,20 @@ function Video(props) {
                 id: id,
             })
         });
+
+        socket.on('change-room-alert', (data) => {
+            // if (data.user.displayName === auth.currentUser.displayName) return
+            console.log(data.message, data.prevRoom);
+
+            const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+            const roomRef = firestore.collection(data.prevRoom)
+
+            roomRef.add({
+                text: data.message,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                id: id,
+            })
+        })
           
 
 
@@ -143,6 +162,7 @@ function Video(props) {
             socket.off('receive-message')
             socket.off('message')
             socket.off('join-alert')
+            socket.off('change-room-alert')
         }
     }, [opts])
 
