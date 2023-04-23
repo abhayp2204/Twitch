@@ -38,7 +38,7 @@ function Room(props) {
     
       const handleShow = (room) => {
         setSelectedRoom(room);
-        setShow(true);
+        setShow(!show);
       };
 
     const handleChange = (e) => {
@@ -46,86 +46,87 @@ function Room(props) {
     }
 
 
-const handleSaveChanges = () => {
-    const originalPassword = selectedRoom.password;
-    if (password === originalPassword) {
-        // Add your logic for handling correct password here
-        window.location.href = `/${selectedRoom.value}`;
-        // $(`#${selectedRoom.value}`).click();
-    } 
-    else {
-        // Add your logic for handling incorrect password here
-    }
-    handleClose();
-  };
-
-
-// event listener for window resize
-useEffect(() => {
-    window.addEventListener('resize', () => {
-        if (window.innerWidth < 1000) {
-            setSmallWindow(true)
-        }
+    const handleSaveChanges = () => {
+        const originalPassword = selectedRoom.password;
+        if (password === originalPassword) {
+            // Add your logic for handling correct password here
+            window.location.href = `/${selectedRoom.value}`;
+            // $(`#${selectedRoom.value}`).click();
+        } 
         else {
-            setSmallWindow(false)
+            // Add your logic for handling incorrect password here
         }
-    })
+        handleClose();
+    };
 
-    return () => {
-        window.removeEventListener('resize', () => {})
+
+    // event listener for window resize
+    useEffect(() => {
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 1000) {
+                setSmallWindow(true)
+            }
+            else {
+                setSmallWindow(false)
+            }
+        })
+        return () => {
+            window.removeEventListener('resize', () => {})
+        }
+    }, [])
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSaveChanges();
+        }
     }
-}, [])
 
 return (
     <div className='room'>
         <Navbar />
         <div className='room-elements'>
-
-<div className='room-display'>
-
-                    
-{!smallWindow && <Panel rooms={props.rooms} />}
+            <div className='room-display'>
+                {!smallWindow && <Panel rooms={props.rooms} />}
 
 
-<div className='custom-room-container'>
-<div className='custom-room-title'>Custom Rooms</div>
-{props.rooms && props.rooms.map((room) => (
-    <React.Fragment key={room.value}>
-    <div
-        className='custom-room'
-        onClick={() => handleShow(room)}
-    >
-        {room.label}
-    </div>
-    {show && selectedRoom && selectedRoom.value === room.value && (
-        <div className="modal">
-        <div className="modal-content">
-            <h2>Enter Password to Join</h2>
-            <input
-            type="password"
-            placeholder="Password"
-            autoFocus
-            value={password}
-            onChange={handleChange}
-            />
-            <div className="modal-buttons">
-            <button onClick={handleClose}>Close</button>
-            <button onClick={handleSaveChanges}>Save Changes</button>
+                <div className='custom-room-container'>
+                <div className='custom-room-title'>Custom Rooms</div>
+                {props.rooms && props.rooms.map((room) => (
+                    <React.Fragment key={room.value}>
+                    <div
+                        className='custom-room'
+                        onClick={() => handleShow(room)}
+                    >
+                        {room.label}
+
+                        {show && selectedRoom && selectedRoom.value === room.value && (
+                        <div className="modal">
+                            <div className="modal-content">
+                                <input
+                                    className='modal-input'
+                                    type="password"
+                                    placeholder="Password"
+                                    autoFocus
+                                    value={password}
+                                    onChange={handleChange}
+                                    onKeyDown={handleKeyDown}
+                                />
+                        </div>
+                    </div>
+                )}
             </div>
-        </div>
-        </div>
-    )}
-    </React.Fragment>
-))}
-</div>
+    
+                </React.Fragment>
+                ))}
+            </div>
 
 
-</div>
-<Video room={props.room} />
-<Chat room={props.room}/>
-</div>
-</div>
-)
+            </div>
+            <Video room={props.room} />
+            <Chat room={props.room}/>
+        </div>
+    </div>
+    )
 }
 
 export default Room

@@ -145,7 +145,6 @@
             })
 
             socket.on('pause-alert', (data) => {
-                return
                 console.log("PAUSED")
                 console.log('pauser = ', data.name)
                 console.log('paued = ', auth.currentUser.displayName)
@@ -155,15 +154,15 @@
                 }
                 console.log("CLIENT: (pause-alert event): room = " + data.room + ", time = " + data.time)
 
-                setKey(generateId())
-                setOpts({
-                    height: '100%',
-                    width: '100%',
-                    playerVars: {
-                        autoplay: 0,
-                        start: data.time,
-                    }
-                })
+                // setKey(generateId())
+                // setOpts({
+                //     height: '100%',
+                //     width: '100%',
+                //     playerVars: {
+                //         autoplay: 0,
+                //         start: data.time,
+                //     }
+                // })
 
                 const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
                 const roomRef = firestore.collection(data.room)

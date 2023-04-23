@@ -32,6 +32,10 @@
     width: 220px;
 }
 
+.custom-room:hover {
+    cursor: pointer;
+}
+
 .custom-room-title {
     font-size: 30px;
     font-weight: 600;
@@ -41,3 +45,11 @@
     margin-bottom: 20px;
 }
 
+.modal-input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding-left: 10px;
+    margin-bottom: 0px;
+}
