@@ -31,7 +31,7 @@ function Chat(props) {
             <div className='message-container'>
                 {messages && messages.map((msg, key) => <ChatMessage key={msg.id} message={msg} />)}
             </div>
-            <button onClick={deleteMessages}>Delete</button>
+            {/* <button onClick={deleteMessages}>Delete</button> */}
             <Send room={props.room} />
         </div>
     )

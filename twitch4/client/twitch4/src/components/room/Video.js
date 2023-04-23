@@ -239,7 +239,7 @@
 
                     opts={opts}
                 />
-                <button onClick={deleteTime}>TimeDel</button>
+                {/* <button onClick={deleteTime}>TimeDel</button> */}
                 <div className='room-description'>
                     <div className='room-title'>{props.room.label}</div>
                     <div className='room-desc'>{props.room.desc}</div>

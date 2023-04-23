@@ -1,6 +1,8 @@
 # Twitchy
 Twitchy is a Watch Party Application designed for friends to watch movies, TV shows, and live events together, no matter where they are in the world. The app allows users to create their own virtual theater and invite friends to join in on the fun.
 
+<img src='./twitch4/client/twitch4/src/images/show.png' width='700' height='400'>
+
 # Features
 * Join Default or Custom Rooms
 * Live Chat
